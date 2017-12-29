@@ -27,8 +27,8 @@
             core.preload('01_migitt.png','02_hidarite.png','haikei.png','burger.png','kao.png','damage3.mp3','swing1.mp3','famipop4.mp3','main.png');
             core.onload = function() {
             
-            //core.assets['famipop4.mp3'].play();
-            //core.assets['famipop4.mp3'].src.loop = true;
+            core.assets['famipop4.mp3'].play();
+            core.assets['famipop4.mp3'].src.loop = true;
 
                                 
                 var haikei = new Sprite(768, 1024);
@@ -65,10 +65,87 @@
                     gu1.y = -500*1;
                     gu1.scale(0.8, 0.8);
                     core.rootScene.addChild(gu1);
-					
-				var gu_moto = function(){
-					
-				}
+                    
+                    var gu2 = new Sprite(56, 276);
+                    gu2.fps = 5;
+                    gu2.frame = Math.floor(Math.random()*6);
+                    gu2.image = core.assets['burger.png'];
+                    gu2.x = Math.random()*(768-burger.width);
+                    gu2.y = -500*2;
+                    gu2.scale(0.8, 0.8);
+                    core.rootScene.addChild(gu2);
+                    
+                    var gu3 = new Sprite(56, 276);
+                    gu3.fps = 5;
+                    gu3.frame = Math.floor(Math.random()*6);
+                    gu3.image = core.assets['burger.png'];
+                    gu3.x = Math.random()*(768-burger.width);
+                    gu3.y = -500*3;
+                    gu3.scale(0.8, 0.8);
+                    core.rootScene.addChild(gu3);
+                    
+                    var gu4 = new Sprite(56, 276);
+                    gu4.fps = 5;
+                    gu4.frame = Math.floor(Math.random()*6);
+                    gu4.image = core.assets['burger.png'];
+                    gu4.x = Math.random()*(768-burger.width);
+                    gu4.y = -500*4;
+                    gu4.scale(0.8, 0.8);
+                    core.rootScene.addChild(gu4);
+                    
+                    var gu5 = new Sprite(56, 276);
+                    gu5.fps = 5;
+                    gu5.frame = Math.floor(Math.random()*6);
+                    gu5.image = core.assets['burger.png'];
+                    gu5.x = Math.random()*(768-burger.width);
+                    gu5.y = -500*5;
+                    gu5.scale(0.8, 0.8);
+                    core.rootScene.addChild(gu5);
+                    
+                    var gu6 = new Sprite(56, 276);
+                    gu6.fps = 5;
+                    gu6.frame = Math.floor(Math.random()*6);
+                    gu6.image = core.assets['burger.png'];
+                    gu6.x = Math.random()*(768-burger.width);
+                    gu6.y = -500*6;
+                    gu6.scale(0.8, 0.8);
+                    core.rootScene.addChild(gu6);
+                    
+                    var gu7 = new Sprite(56, 276);
+                    gu7.fps = 5;
+                    gu7.frame = Math.floor(Math.random()*6);
+                    gu7.image = core.assets['burger.png'];
+                    gu7.x = Math.random()*(768-burger.width);
+                    gu7.y = -500*7;
+                    gu7.scale(0.8, 0.8);
+                    core.rootScene.addChild(gu7);
+                    
+                    var gu8 = new Sprite(56, 276);
+                    gu8.fps = 5;
+                    gu8.frame = Math.floor(Math.random()*6);
+                    gu8.image = core.assets['burger.png'];
+                    gu8.x = Math.random()*(768-burger.width);
+                    gu8.y = -500*8;
+                    gu8.scale(0.8, 0.8);
+                    core.rootScene.addChild(gu8);
+                    
+                    var gu9 = new Sprite(56, 276);
+                    gu9.fps = 5;
+                    gu9.frame = Math.floor(Math.random()*6);
+                    gu9.image = core.assets['burger.png'];
+                    gu9.x = Math.random()*(768-burger.width);
+                    gu9.y = -500*9;
+                    gu9.scale(0.8, 0.8);
+                    core.rootScene.addChild(gu9);
+                    
+                    var gu10 = new Sprite(56, 276);
+                    gu10.fps = 5;
+                    gu10.frame = Math.floor(Math.random()*6);
+                    gu10.image = core.assets['burger.png'];
+                    gu10.x = Math.random()*(768-burger.width);
+                    gu10.y = -500*10;
+                    gu10.scale(0.8, 0.8);
+                    core.rootScene.addChild(gu10);
                     
                 /*----------------------------------
                 ここまで具
@@ -89,6 +166,17 @@
                 kao.tick = 0;
                 core.rootScene.addChild(kao);
                 
+                            /*
+                            var gu = new Sprite(56, 276);
+                            gu.fps = 5;
+                            gu.frame = Math.floor(Math.random()*6);
+                            gu.image = core.assets['burger.png'];
+                            gu.x = Math.random()*(768-burger.width);
+                            gu.y = 0;
+                            gu.scale(0.8, 0.8);
+                            core.rootScene.addChild(gu);
+                            */
+                            
                 var infoLabel = new Label(kao.gu_flg);
                 infoLabel.x = 0;
                 infoLabel.y = 0;
@@ -125,6 +213,33 @@
                        if (gu1){
                             gu1.y += 10;
                        }
+                       if (gu2){
+                            gu2.y += 10;
+                       }
+                       if (gu3){
+                            gu3.y += 10;
+                       }
+                       if (gu4){
+                            gu4.y += 10;
+                       }
+                       if (gu5){
+                            gu5.y += 10;
+                       }
+                       if (gu6){
+                            gu6.y += 10;
+                       }
+                       if (gu7){
+                            gu7.y += 10;
+                       }
+                       if (gu8){
+                            gu8.y += 10;
+                       }
+                       if (gu9){
+                            gu9.y += 10;
+                       }
+                       if (gu10){
+                            gu10.y += 10;
+                       }
                 })
                 
                 
@@ -133,19 +248,19 @@
                  // 二つ目のシーン
                 var main = new Scene();
                 
-                var main_bg = new Sprite(798, 1049);
-                main_bg.image = core.assets['main.png'];
-                main_bg.x = 0;
-                main_bg.y = 0;
-                main_bg.scale(1, 1);
-                main.rootScene.addChild(main_bg);
+                var main = new Sprite(798, 1049);
+                main.image = core.assets['main.png'];
+                main.x = 0;
+                main.y = 0;
+                main.scale(1, 1);
+                //core.rootScene.addChild(main);
                 core.pushScene(main);
                 
         
         
                 // 画面をクリック(タッチ)した時の処理
-                main_bg.addEventListener('click', function() {
-                    core.pushScene(core);
+                kao.addEventListener('touchstart', function() {
+                    core.pushScene(main);
                 });
             }
             core.start();
