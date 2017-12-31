@@ -43,9 +43,9 @@ window.onload = function() {
 	core.preload('img/01_hidarite.png','img/02_migite.png','img/haikei.png','img/burger.png','img/kao.png','sound/damage3.mp3','sound/swing1.mp3','sound/famipop4.mp3','img/main.png');
 	core.onload = function() {
 		//▼BGM
-		core.assets['sound/famipop4.mp3'].volume = 0.01;
 		core.assets['sound/famipop4.mp3'].play();
-		core.assets['sound/famipop4.mp3'].loop = "true";
+		core.assets['sound/famipop4.mp3'].volume = 0.01;
+		core.assets['sound/famipop4.mp3'].src.loop = true;
 
 		/*----------------------------------
 		舞台素材
