@@ -1,9 +1,12 @@
 enchant();
 
 //■■■■■■■■■■■■■■■■■■■■
-//オブジェクト定義
+//オブジェクト定義／変数宣言
 //■■■■■■■■■■■■■■■■■■■■
+// ▼変数宣言
+	var score = 0;
 
+// ▼具のオブジェクト定義
 gutati = [];	// 追加したオブジェクトを格納する配列です。
 Gu = Class.create(Sprite,{	//クラスを作るメソッド。第一引数に継承元のクラスを。変数に収めることでオーバーライドした新しいクラスを作成できる。
 	initialize: function(x,y,p){	
@@ -20,8 +23,12 @@ Gu = Class.create(Sprite,{	//クラスを作るメソッド。第一引数に継
 		gutati[gutati.length] = this;	// 配列の一番うしろに、今作成したインスタンスを追加しています。蛇電車状態。
 	},
 	onenterframe: function(){
-		this.y += 10;
-		this.x += Math.sin( this.age*0.1);
+		this.y += 30;	// 落ちます
+		this.x += Math.sin( this.age*0.1);	// ゆらゆらします
+		if ( core.height-200 <= this.y ){	// 下まで行くと消えます(遠くへ隠します）
+			this.x = 2000;
+			this.y = 2000;
+		}
 	}
 });
 
@@ -36,7 +43,7 @@ window.onload = function() {
 	core.preload('img/01_hidarite.png','img/02_migite.png','img/haikei.png','img/burger.png','img/kao.png','sound/damage3.mp3','sound/swing1.mp3','sound/famipop4.mp3','img/main.png');
 	core.onload = function() {
 		//▼BGM
-		core.assets['sound/famipop4.mp3'].volume = 0.3;
+		core.assets['sound/famipop4.mp3'].volume = 0.01;
 		core.assets['sound/famipop4.mp3'].play();
 		core.assets['sound/famipop4.mp3'].loop = "true";
 
@@ -91,7 +98,7 @@ window.onload = function() {
 
 		// スコア
 		var score_label = new Label("score：");
-		score_label.x = 580;
+		score_label.x = 500;
 		score_label.y = 10;
 		score_label.font = '50px sens-serif';
 		core.rootScene.addChild(score_label);
@@ -100,35 +107,39 @@ window.onload = function() {
 		以下、イベントリスナー系
 		----------------------------------*/
 		core.addEventListener( 'enterframe', function(){	//毎フレーム実行
-			if ( core.frame%100 == 0){	//10回に１回実行。密度を1/10に減らす。
+			if ( core.frame%50 == 0){	//50回に１回実行。密度を1/10に減らす。
 				var gu = new Gu( Math.random()*768, 0);
 			}
 			infoLabel.text = core.tick;
+			score_label.text = "score: " + score;
 			core.tick += 1;
 		});
 		
 		kao.addEventListener('touchstart',function(e) {
-				core.assets['sound/swing1.mp3'].play();
-				for( i=0, len=gutati.length; i<len; i++){	// 全ての具をチェックします。
-					score_label.text = i;
-					if ( migite.x <= gutati[i].x && gutati[i].x <= hidarite.x) {
-						console.log("get");
-					}
-				}
-		})
+			core.assets['sound/swing1.mp3'].play();
+		});
 
 		kao.addEventListener('touchmove',function(e) {
-				this.x = e.x - this.width /2;
-				migite.x =  this.x + 100 + this.width /2;
-				hidarite.x =  this.x + 290 - this.width /2;
-		})
+			this.x = e.x - this.width /2;
+			migite.x =  this.x + 100 + this.width /2;
+			hidarite.x =  this.x + 290 - this.width /2;
+		});
 		
 		kao.addEventListener('touchend',function(e) {
-				migite.x =  this.x - 90 + this.width /2;
-				hidarite.x =  this.x  - 210 + this.width /2;
-				core.assets['sound/damage3.mp3'].play();
-		})
-									   
+			migite.x =  this.x - 90 + this.width /2;
+			hidarite.x =  this.x  - 210 + this.width /2;
+			core.assets['sound/damage3.mp3'].play();
+				
+			for( i=0, len=gutati.length; i<len; i++){	// 全ての具をチェックします。
+				if ( kao.x+300 <= gutati[i].x && gutati[i].x <= kao.x+400) {
+					if ( this.intersect( gutati[i] ) ) {
+						score += 1;
+						gutati[i].y = 2000;	//あたり判定しない場所へ吹っ飛ばす
+						gutati[i].x = 2000;	//あたり判定しない場所へ吹っ飛ばす
+					}
+				}
+			}
+		});
 
 	}
 	core.start();
