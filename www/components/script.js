@@ -18,7 +18,6 @@ Gu = Class.create(Sprite,{	//クラスを作るメソッド。第一引数に継
 		this.y += 10;
 		this.x += Math.sin( this.age*0.1);
 	}
-
 });
 
 
@@ -31,7 +30,9 @@ window.onload = function() {
 	core.fps = 25;
 	core.preload('img/01_migitt.png','img/02_hidarite.png','img/haikei.png','img/burger.png','img/kao.png','sound/damage3.mp3','sound/swing1.mp3','sound/famipop4.mp3','img/main.png');
 	core.onload = function() {
+		//▼BGM
 		core.assets['sound/famipop4.mp3'].play();
+		core.assets['sound/famipop4.mp3'].loop = "true";
 
 		var haikei = new Sprite(768, 1024);
 		haikei.image = core.assets['img/haikei.png'];
@@ -67,12 +68,20 @@ window.onload = function() {
 		/*----------------------------------
 		UI
 		----------------------------------*/
+		//▼タイム
 		var infoLabel = new Label(kao.gu_flg);
 		infoLabel.x = 0;
 		infoLabel.y = 0;
 		infoLabel.font = '100px sens-serif';
 		core.rootScene.addChild(infoLabel);
-				
+
+		//▼スコア
+		var score_label = new Label("score：");
+		score_label.x = 580;
+		score_label.y = 10;
+		score_label.font = '50px sens-serif';
+		core.rootScene.addChild(score_label);
+
 		/*----------------------------------
 		以下、イベントリスナー系
 		----------------------------------*/
