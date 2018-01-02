@@ -8,7 +8,9 @@ enchant();
 	var score = 0;
 	var debug = 0;
 	var gu_atumi = 10;	// 具の厚み
-	var frequency = 30;	// 具出現のの間髪。大きいほど間隔が開く。
+	
+	var frequency = 30;	// 具の量。具出現の頻度。大きいほど間隔が開く。
+	var speed = 10;	// 具の落下スピード。30くらいだとちょうど難しい。3くらいだと結構ゆっくり。
 	
 // ▼具のオブジェクト定義
 	gutati = [];	// 追加したオブジェクトを格納する配列です。
@@ -27,7 +29,7 @@ enchant();
 			gutati[gutati.length] = this;	// 配列の一番うしろに、今作成したインスタンスを追加しています。蛇電車状態。
 		},
 		onenterframe: function(){
-			this.y += 30;	// 落ちます
+			this.y += speed;	// 落ちます
 			this.x += Math.sin( this.age*0.1);	// ゆらゆらします
 			if ( core.height-200 <= this.y ){	// 下まで行くと消えます(遠くへ隠します）
 				this.x = 2000;
@@ -147,7 +149,7 @@ window.onload = function() {
 			score_label.text = "score: " + score;
 			// debug_label.text = "x: " + debug;
 			core.tick += 1;
-			// 常にゲットした具が右手に追従する
+			// 常にゲットした具たちが右手に追従する
 			burger.x = migite.x + 80;
 		});
 		
@@ -162,8 +164,6 @@ window.onload = function() {
 		});
 		
 		kao.addEventListener('touchend',function(e) {
-			migite.x =  this.x - 90 + this.width /2;
-			hidarite.x =  this.x  - 210 + this.width /2 - gutetati.length*gu_atumi;	// 採れた具の分だけ左に寄って行きます。
 			core.assets['sound/damage3.mp3'].play();
 				
 			for( i=0, len=gutati.length; i<len; i++){	// 全ての具をチェックします。
@@ -176,6 +176,9 @@ window.onload = function() {
 					}
 				}
 			}
+			
+			migite.x =  this.x - 90 + this.width /2;
+			hidarite.x =  this.x  - 210 + this.width /2 - gutetati.length*gu_atumi + gu_atumi; // 採れた具の分だけ左に寄って行きます。計算上厚み分左に寄るので微調整。
 		});
 		
 		// 背景を一番後ろへ。
